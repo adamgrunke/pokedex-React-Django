@@ -3,8 +3,8 @@ import React from 'react';
 function PokemonDetails({pokemonName, pokemon}) {
     let content;
     // console.log("from Details", pokemonName)
-    console.log(pokemon)
-    console.log(pokemon.species)
+    // console.log(pokemon)
+    // console.log(pokemon.species)
     content = (
         <>
             {/* <img src="{pokemon.sprites.front_default}"></img> */}

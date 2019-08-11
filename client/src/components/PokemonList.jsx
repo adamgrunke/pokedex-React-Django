@@ -4,14 +4,18 @@ function PokemonList({pokemonCollection, handlePokemonSelect}) {
     let content;
     if (pokemonCollection.length) {
         content = pokemonCollection.map((pokemon, id) => {
-            return <p onClick={() => handlePokemonSelect(pokemon.name)} key={id}>{pokemon.name}</p>
+            return <p className="pokemon" onClick={() => handlePokemonSelect(pokemon.name)} key={id}>{pokemon.name}</p>
         })
     } else {
-        content = <p>.... collection Pokemon.</p>
+        content = (
+        <div className="pokemon" >
+            <p >.... collection Pokemon.</p>
+        </div>
+        )
     }
 
     return (
-        <div className="App">
+        <div className="list">
             {content}
         </div>
     );

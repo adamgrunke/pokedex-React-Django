@@ -10,13 +10,14 @@ function App() {
   const [pokemonName, setPokemonName] = useState(["bulbasaur"])
   const [pokemon, setPokemon] = useState({})
   const [pokemonFavorites, setPokemonFavorites] = useState({})
-  const [addFavPokemon, setAddFavPokemon] = useState();
+  const [addFavPokemon, setAddFavPokemon] = useState(4)
 
 
   // GET GET GET - FROM API - Calls for the amount of Pokemon specified from the api.
   useEffect ( () => {
-    console.log("running the axios call for 151 pokemon useEffect")
-    axios.get('https://pokeapi.co/api/v2/pokemon/').then( (response) => {
+    // console.log("running the axios call for 151 pokemon useEffect")
+    // axios.get('https://pokeapi.co/api/v2/pokemon/').then( (response) => {
+    axios.get('http://pokeapi.co/api/v2/pokemon/?limit=151').then( (response) => {
       setPokemonCollection(response.data.results);
       // console.log(response.data.results)
     })
@@ -24,7 +25,7 @@ function App() {
 
   // GET GET GET - FROM DB - This calls for the pokemon that have been stored in the database as favorites.
   useEffect ( () => {
-    console.log("running the axios call for favorite pokemon useEffect")
+    // console.log("running the axios call for favorite pokemon useEffect")
     axios.get('/pokemon/').then( (response) => {
       setPokemonFavorites(response.data);
     
@@ -33,7 +34,7 @@ function App() {
 
   // GET GET GET - DETAILS FROM API - This request details for a specific pokemon from the api.
   useEffect ( () => {
-    console.log("running the axios call for pokemon DETAILS useEffect")
+    // console.log("running the axios call for pokemon DETAILS useEffect")
     axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then( (response) => {
       setPokemon(response.data);
       // console.log(pokemon)
@@ -42,9 +43,13 @@ function App() {
 
   // POST POST POST - ADD Favorite to DB - THis useEffect is intended to add a selected pokemon to the favorites list. 
   useEffect ( () => {
-    console.log("running the axios call to POST a pokemon to fav db useEffect")
+    // console.log("running the axios call to POST a pokemon to fav db useEffect")
+    axios.defaults.xsrfCookieName = 'csrftoken'
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
     axios.post('/pokemon/').then( (response) => {
       console.log("POSTED??")
+      setAddFavPokemon(response.data)
+      // setAddFavPokemon(response.data)
     })
   },[addFavPokemon])
 

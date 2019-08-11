@@ -2,11 +2,11 @@ import React from 'react';
 
 function PokemonFavorites({pokemonFavorites}) {
     let content;
-    console.log("Pkfav",pokemonFavorites,pokemonFavorites.length)
+    // console.log("Pkfav",pokemonFavorites,pokemonFavorites.length)
     if (pokemonFavorites.length ) {
-        console.log('looping favorites')
+        // console.log('looping favorites')
         content = pokemonFavorites.map((pokemon, id) => {
-            return <p  key={id}>{pokemon.name}</p>
+            return <p   className="faves" key={id}>{pokemon.name}</p>
         })
     } else {
         content = <p>Save your favorite Pokemon here!</p>
@@ -14,7 +14,7 @@ function PokemonFavorites({pokemonFavorites}) {
     }
 
     return (
-        <div className="App">
+        <div>
             {content}
         </div>    )
 

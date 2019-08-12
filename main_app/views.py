@@ -6,8 +6,6 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
-
 # Create your views here.
 @api_view(['GET', 'POST'])
 def pokemon_list(request): 
@@ -17,6 +15,8 @@ def pokemon_list(request):
         serializer = PokemonSerializer(pokemon, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "POST":
+        # find or create!!!!!
+
         serializer = PokemonSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

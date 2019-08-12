@@ -35,4 +35,6 @@
 
 .faves {
   margin: 1%;
+  background-color: pink;
+  display: inline-block;
 }

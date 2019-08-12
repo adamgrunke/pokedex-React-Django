@@ -11,12 +11,12 @@ from rest_framework.response import Response
 # Create your views here.
 @api_view(['GET', 'POST'])
 def pokemon_list(request): 
+    print("SEERRRRIALIZZZZZZZZRRRRRRR REEEEEQUEST", request.data)
     if request.method == "GET":
         pokemon = Pokemon.objects.all()
         serializer = PokemonSerializer(pokemon, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == "POST":
-        print("SEERRRRIALIZZZZZZZZRRRRRRR", PokemonSerializer)
         serializer = PokemonSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

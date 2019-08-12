@@ -7,7 +7,7 @@ import PokemonFavorites from './components/PokemonFavorites';
 
 function App() {
   const [pokemonCollection, setPokemonCollection] = useState([])
-  const [pokemonName, setPokemonName] = useState(["bulbasaur"])
+  const [pokemonName, setPokemonName] = useState([])
   const [pokemon, setPokemon] = useState({})
   const [pokemonFavorites, setPokemonFavorites] = useState({})
   const [addFavPokemon, setAddFavPokemon] = useState(4)
@@ -23,6 +23,8 @@ function App() {
     })
   }, [])
 
+
+
   // GET GET GET - FROM DB - This calls for the pokemon that have been stored in the database as favorites.
   useEffect ( () => {
     // console.log("running the axios call for favorite pokemon useEffect")
@@ -31,6 +33,11 @@ function App() {
     
     })
   },[pokemonFavorites.length]) // how will it know that the length of the array has changed without calling it??? 
+
+
+
+
+
 
   // GET GET GET - DETAILS FROM API - This request details for a specific pokemon from the api.
   useEffect ( () => {
@@ -42,16 +49,30 @@ function App() {
   }, [pokemonName])
 
   // POST POST POST - ADD Favorite to DB - THis useEffect is intended to add a selected pokemon to the favorites list. 
-  useEffect ( () => {
-    // console.log("running the axios call to POST a pokemon to fav db useEffect")
-    axios.defaults.xsrfCookieName = 'csrftoken'
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-    axios.post('/pokemon/').then( (response) => {
-      console.log("POSTED??")
-      setAddFavPokemon(response.data)
-      // setAddFavPokemon(response.data)
-    })
-  },[addFavPokemon])
+  // useEffect ( () => {
+  //   // console.log("running the axios call to POST a pokemon to fav db useEffect")
+    
+  //   // axios.get(`/pokemon/${pokemonName}`).then( (response) => {
+  //   //   console.log("REEEEESPONSE", response.data)
+  //   //   let temp = response.data.name
+  //   //   console.log({temp})
+  //   //   if (temp.includes(pokemonName)) {
+  //   //     console.log("TRRRRRRRRRUE!")
+  //   //   } else {
+  //   //     console.log("FFFFFAAAAAAALLLLLLSE")
+  //   //   }
+  //   // })
+    
+  //   axios.defaults.xsrfCookieName = 'csrftoken'
+  //   axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+  //   axios.post('pokemon/', {name: pokemonName}).then( (response) => {
+  //     console.log("POSTED??")
+  //     setAddFavPokemon(response.data)
+  //     // setAddFavPokemon(response.data)
+  //   })
+
+
+  // },[])
 
 
 
